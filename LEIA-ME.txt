@@ -1,0 +1,17 @@
+NAFITA - PREVIA DO SITE (versao melhorada)
+
+Abrir: extraia o ZIP e abra index.html no navegador. Mantenha a pasta assets junto ao index.html.
+Subir na Vercel: arraste a pasta inteira em vercel.com/new (site estatico, nao precisa de build)
+ou rode "npx vercel" dentro da pasta.
+
+HTML, CSS e JavaScript editaveis, sem instalacao.
+Filtros, detalhes das pecas e sacola sao demonstrativos. Nao ha pagamentos, pedidos reais ou banco de dados.
+
+Fotos: recortadas da captura do Instagram fornecida (baixa resolucao, ~280px de largura).
+Foram ampliadas 2x so para suavizar. Substitua pelos originais em assets/ mantendo os nomes
+(hero, sunset, ivory, pink, blue, pastel, logo .jpg) e o site se atualiza sozinho.
+
+Onde editar:
+- Produtos, cores, nomes: lista "products" no final do index.html
+- Cores e tamanhos de texto: bloco ":root" no comeco do <style>
+- Fontes: assets/fonts (Bodoni Moda e Hanken Grotesk, hospedadas junto do site)

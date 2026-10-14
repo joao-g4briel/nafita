@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nafita | O verão é seu</title>
+<meta name="description" content="Prévia visual da loja Nafita Moda Praia. Desde 2020 vestindo mulheres reais.">
+<meta name="theme-color" content="#785334">
+<link rel="icon" href="assets/logo.jpg">
+<style>
+/* ---------- Fontes (hospedadas junto do site) ---------- */
+@font-face{font-family:"Bodoni Moda";src:url("assets/fonts/bodoni-moda-opsz.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Bodoni Moda";src:url("assets/fonts/bodoni-moda-opsz-italic.woff2") format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
+@font-face{font-family:"Hanken Grotesk";src:url("assets/fonts/hanken-grotesk.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
+/* ---------- Tokens ---------- */
+:root{
+  --paper:#faf7f0;
+  --ink:#382b23;
+  --muted:#65564a;
+  --brown:#785334;
+  --brown-deep:#543a26;
+  --sand:#e9ddc7;
+  --sand-soft:#eae1d3;
+  --line:#ded4c6;
+  --gold:#b18a5a;
+
+  --serif:"Bodoni Moda",Georgia,serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --step-label:.75rem;      /* rótulos em caixa-alta */
+  --step-meta:.8125rem;     /* informações de apoio */
+  --step-body:1rem;         /* texto corrido */
+  --step-lead:1.0625rem;    /* texto de abertura */
+  --step-h3:1.25rem;
+  --step-h2:clamp(2.1rem,4vw,3rem);
+  --step-display:clamp(3.4rem,7.4vw,6rem);
+
+  --ease:cubic-bezier(.16,1,.3,1);
+  --gutter:clamp(20px,5vw,72px);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-color:var(--brown) var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:var(--step-body)/1.6 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body:has(dialog[open]){overflow:hidden}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance}
+/* Bodoni Moda tem eixo de tamanho óptico: nos títulos grandes, trava num valor que mantém os traços finos legíveis */
+.hero h1,.section-head h2,.story h2,.modal-copy h2,#bagDialog h2,.brand,.signature p,.hero-figure figcaption strong{font-optical-sizing:none;font-variation-settings:"opsz" 34}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+img{display:block;max-width:100%}
+::selection{background:var(--brown);color:var(--paper)}
+:focus-visible{outline:2px solid var(--brown);outline-offset:4px;border-radius:2px}
+.icon{width:1em;height:1em;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--ink);color:var(--paper);padding:12px 18px;font-size:var(--step-meta);transition:top .2s var(--ease)}
+.skip:focus{top:12px}
+.label{font-size:var(--step-label);letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+
+/* ---------- Faixa e cabeçalho ---------- */
+.announcement{text-align:center;background:var(--brown);color:#fff8ee;font-size:var(--step-label);letter-spacing:.2em;padding:11px 16px;font-weight:500}
+header{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:22px;padding:14px var(--gutter);background:var(--paper);border-bottom:1px solid var(--line)}
+nav{display:flex;gap:28px;font-size:var(--step-meta);letter-spacing:.04em}
+.link{position:relative;padding:6px 0}
+.link::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.link:hover::after{transform:scaleX(1)}
+.brand{font:500 1.875rem/1 var(--serif);letter-spacing:.24em;text-align:center;padding-left:.24em}
+.brand small{display:block;font:500 .6875rem var(--sans);letter-spacing:.34em;margin-top:6px;padding-left:.34em}
+.header-end{display:flex;gap:26px;align-items:center;justify-content:flex-end;font-size:var(--step-meta);letter-spacing:.04em}
+.bag{display:inline-flex;align-items:center;gap:8px;border:0;background:none;padding:10px 4px;min-height:44px}
+.bag .icon{font-size:20px}
+.bag-count{font-variant-numeric:tabular-nums}
+.bag.bump .icon{animation:bump .5s var(--ease)}
+@keyframes bump{40%{transform:translateY(-4px) scale(1.12)}}
+
+/* ---------- Botões e links de texto ---------- */
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:28px;background:var(--brown);color:#fff;border:1px solid var(--brown);padding:18px 26px;min-height:52px;font-size:var(--step-meta);font-weight:600;letter-spacing:.14em;text-transform:uppercase;transition:background-color .25s var(--ease),border-color .25s var(--ease)}
+.btn .icon{font-size:16px;transition:transform .35s var(--ease)}
+.btn:hover{background:var(--brown-deep);border-color:var(--brown-deep)}
+.btn:hover .icon{transform:translate(3px,-3px)}
+.btn:active{background:var(--ink);border-color:var(--ink)}
+.btn[data-icon="plus"]:hover .icon{transform:rotate(90deg)}
+.text-link{display:inline-flex;align-items:center;gap:8px;font-size:var(--step-meta);font-weight:600;letter-spacing:.04em;border-bottom:1px solid currentColor;padding:6px 0 5px;transition:color .25s var(--ease),gap .35s var(--ease)}
+.text-link:hover{color:var(--brown);gap:12px}
+.text-link .icon{font-size:14px}
+
+/* ---------- Abertura ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);min-height:min(680px,calc(100svh - 120px))}
+.hero-copy{padding:72px clamp(24px,8%,120px) 56px var(--gutter);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.hero h1{font-size:var(--step-display);line-height:.98;letter-spacing:-.025em;margin:0 0 28px}
+.hero h1 .l{display:block;overflow:hidden;padding:0 .06em .12em;margin-bottom:-.12em}
+.hero h1 .l>span{display:block;animation:rise 1.1s var(--ease) backwards}
+.hero h1 .l:nth-child(2)>span{animation-delay:.12s}
+.hero h1 em{color:var(--brown);font-style:italic}
+@keyframes rise{from{transform:translateY(108%)}}
+.hero-lead{font-size:var(--step-lead);line-height:1.65;max-width:34ch;color:var(--muted)}
+.hero .btn{margin-top:32px}
+.hero-foot{margin-top:52px;color:var(--muted)}
+.hero-visual{background:var(--sand);display:grid;place-items:center;padding:clamp(28px,5vw,64px)}
+.hero-figure{margin:0;width:min(100%,430px)}
+.hero-photo{position:relative;aspect-ratio:3/4;overflow:hidden;background:#bd9b77;animation:reveal 1.3s var(--ease) .1s backwards}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:settle 1.8s var(--ease) backwards}
+@keyframes reveal{from{clip-path:inset(0 0 100% 0)}}
+@keyframes settle{from{transform:scale(1.12)}}
+.hero-figure figcaption{display:flex;flex-direction:column;gap:6px;margin-top:20px;color:var(--muted)}
+.hero-figure figcaption strong{font:500 1.75rem/1.15 var(--serif);color:var(--ink);letter-spacing:0}
+
+/* ---------- Benefícios ---------- */
+.benefits{display:flex;justify-content:space-around;gap:16px 28px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:26px var(--gutter);color:var(--ink)}
+.benefits span{display:inline-flex;align-items:center;gap:12px}
+.benefits .icon{font-size:14px;fill:var(--gold);stroke:none}
+
+/* ---------- Coleção ---------- */
+section{padding:clamp(56px,8vw,96px) var(--gutter)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px 40px;flex-wrap:wrap;margin-bottom:36px}
+.section-head h2,.story h2,.modal-copy h2,#bagDialog h2{font-size:var(--step-h2);line-height:1.08;letter-spacing:-.015em}
+.section-head p{margin-top:14px;color:var(--muted);font-size:var(--step-lead)}
+.filters{display:flex;gap:10px;margin-bottom:32px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filter{border:1px solid var(--line);border-radius:999px;background:transparent;padding:12px 22px;min-height:44px;font-size:var(--step-meta);font-weight:500;white-space:nowrap;transition:background-color .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.filter:hover{border-color:var(--ink)}
+.filter[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filter span{opacity:.65;margin-left:6px;font-variant-numeric:tabular-nums}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 20px}
+.product{min-width:0}
+.product[hidden]{display:none}
+.product-photo{position:relative;display:block;width:100%;padding:0;border:0;overflow:hidden;background:#eee7db;aspect-ratio:3/4}
+.product-photo img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.product:hover .product-photo img{transform:scale(1.04)}
+.product-photo .plus{position:absolute;right:12px;bottom:12px;width:44px;height:44px;display:grid;place-items:center;background:var(--paper);color:var(--ink);border-radius:50%;transition:background-color .25s var(--ease),color .25s var(--ease),transform .4s var(--ease)}
+.product-photo .plus .icon{font-size:18px}
+.product:hover .plus{background:var(--brown);color:#fff;transform:rotate(90deg)}
+.tag{position:absolute;left:12px;top:12px;background:rgba(250,247,240,.94);padding:8px 10px;font-size:.6875rem;letter-spacing:.14em;font-weight:600;color:var(--ink)}
+.product h3{margin:18px 0 10px;font-size:var(--step-h3);line-height:1.2}
+.product h3 button{border:0;background:none;padding:2px 0;text-align:left;font:inherit;letter-spacing:0}
+.product h3 button:hover{color:var(--brown)}
+.product-info{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:var(--step-meta);color:var(--muted)}
+.swatches{display:flex;gap:6px}
+.swatches i{width:14px;height:14px;border-radius:50%;background:var(--c);border:1px solid rgba(56,43,35,.22)}
+
+/* ---------- Essência ---------- */
+.story{display:grid;grid-template-columns:minmax(260px,460px) minmax(0,1fr);gap:0;padding:0;background:var(--sand-soft);margin:0 var(--gutter) clamp(56px,8vw,96px)}
+.story img{width:100%;height:100%;min-height:520px;object-fit:cover;object-position:center 38%}
+.story-copy{padding:clamp(36px,7vw,96px) clamp(28px,9%,120px);align-self:center}
+.story h2{font-size:clamp(2.4rem,4.6vw,3.5rem);margin:0 0 28px}
+.story h2 em{color:var(--brown);font-style:italic}
+.story p{color:var(--muted);max-width:44ch;font-size:var(--step-lead);line-height:1.7}
+.story .text-link{margin-top:28px}
+
+.signature{text-align:center;padding:8px 20px clamp(56px,8vw,96px)}
+.signature img{width:104px;height:auto;margin:0 auto;border-radius:50%;mix-blend-mode:multiply}
+.signature p{font:500 clamp(1.6rem,3vw,2rem)/1.2 var(--serif);margin:20px 0 14px}
+.signature small{display:block;color:var(--muted)}
+
+/* ---------- Rodapé ---------- */
+footer{background:var(--ink);color:#f2e8d8;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px 48px;padding:48px var(--gutter)}
+footer .brand{font-size:1.5rem;text-align:left;padding-left:0}
+footer .brand small{padding-left:0}
+footer p{font-size:var(--step-meta);line-height:1.8;color:#dccdbb;justify-self:center;text-align:center}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap}
+footer .text-link:hover{color:#fff}
+.preview-note{text-align:center;padding:14px var(--gutter);background:var(--sand);color:var(--muted);font-size:var(--step-meta)}
+
+/* ---------- Janelas (peça e sacola) ---------- */
+.dialog{border:0;padding:0;background:var(--paper);color:var(--ink);width:min(720px,92vw);max-height:92vh;box-shadow:0 30px 70px -24px rgba(36,27,22,.55)}
+.dialog[open]{animation:pop .45s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}}
+.dialog::backdrop{background:rgba(36,27,22,.62);backdrop-filter:blur(3px)}
+.close{position:absolute;top:8px;right:8px;z-index:2;display:grid;place-items:center;width:44px;height:44px;background:var(--paper);border:0;border-radius:50%;transition:background-color .25s var(--ease)}
+.close:hover{background:var(--sand)}
+.close .icon{font-size:20px}
+.modal-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.modal-layout>img{width:100%;height:100%;min-height:440px;max-height:560px;object-fit:cover}
+.modal-copy{padding:44px 32px 32px;display:flex;flex-direction:column;align-items:flex-start}
+.modal-copy h2{margin-bottom:18px}
+.modal-copy p{color:var(--muted);font-size:var(--step-body)}
+.modal-copy p+p{margin-top:8px}
+.sizes{display:flex;gap:8px;margin:22px 0 14px;border:0;padding:0}
+.sizes legend{padding:0;margin-bottom:10px;font-size:var(--step-meta);color:var(--muted)}
+.sizes button{min-width:48px;min-height:48px;background:none;border:1px solid var(--line);padding:0 14px;font-weight:600;transition:background-color .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease)}
+.sizes button:hover{border-color:var(--ink)}
+.sizes button[aria-pressed="true"]{background:var(--brown);border-color:var(--brown);color:#fff}
+.sizes.needs button{border-color:var(--brown)}
+.fine{font-size:var(--step-meta)!important;line-height:1.55}
+.modal-copy .btn{margin-top:20px}
+.status{min-height:2.6em;margin-top:14px;color:var(--brown);font-size:var(--step-meta);font-weight:600}
+#bagDialog{width:min(560px,92vw);padding:48px 40px 40px}
+#bagDialog h2{margin:0 0 12px}
+#bagItems{margin:18px 0 22px;border-top:1px solid var(--line)}
+#bagItems .empty{padding:24px 0;color:var(--muted)}
+.bag-row{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.bag-row img{width:56px;height:74px;object-fit:cover}
+.bag-row b{display:block;font:400 1.125rem/1.2 var(--serif)}
+.bag-row span{font-size:var(--step-meta);color:var(--muted)}
+.remove{border:0;background:none;color:var(--brown);text-decoration:underline;text-underline-offset:3px;font-size:var(--step-meta);font-weight:600;padding:12px 4px;min-height:44px}
+.bag-note{font-size:var(--step-meta);line-height:1.65;color:var(--muted)}
+#bagDialog .btn{margin-top:22px}
+
+/* ---------- Responsivo ---------- */
+@media(min-width:1500px){body{max-width:1600px;margin:auto}}
+@media(max-width:1000px){
+  .products{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-copy{padding:56px var(--gutter) 48px}
+  .hero-visual{padding:36px var(--gutter) 44px}
+  .hero-figure{width:min(100%,460px)}
+  .story{grid-template-columns:1fr}
+  .story img{min-height:0;height:min(120vw,560px);object-position:center 30%}
+  footer{grid-template-columns:1fr;justify-items:start}
+  footer p{justify-self:start;text-align:left}
+}
+@media(max-width:640px){
+  header{grid-template-columns:1fr auto 1fr;gap:10px}
+  nav{gap:14px}
+  nav a:nth-child(n+2){display:none}
+  .header-end>a{display:none}
+  .brand{font-size:1.5rem}
+  .announcement{letter-spacing:.12em}
+  .section-head{align-items:start}
+  .products{gap:28px 12px}
+  .product h3{font-size:1.0625rem}
+  .product-photo .plus{width:40px;height:40px;right:8px;bottom:8px}
+  .benefits{justify-content:flex-start}
+  .modal-layout{grid-template-columns:1fr}
+  .modal-layout>img{min-height:0;height:240px}
+  .modal-copy{padding:26px 22px 24px}
+  #bagDialog{padding:44px 22px 28px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2c.7 5.2 2.8 7.3 8 8-5.2.7-7.3 2.8-8 8-.7-5.2-2.8-7.3-8-8 5.2-.7 7.3-2.8 8-8Z"/></symbol>
+</svg>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="announcement">SOL NA PELE. LEVEZA PARA SER VOCÊ.</div>
+<header>
+  <nav aria-label="Navegação principal"><a class="link" href="#colecao">Coleção</a><a class="link" href="#essencia">Nossa essência</a></nav>
+  <a href="#" class="brand" aria-label="Nafita Moda Praia, início">NAFITA<small>MODA PRAIA</small></a>
+  <div class="header-end">
+    <a class="link" href="#contato">Fale com a gente</a>
+    <button class="bag" id="bagButton" type="button" aria-label="Abrir sacola"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg><span>Sacola <span class="bag-count" id="count">(0)</span></span></button>
+  </div>
+</header>
+
+<main id="conteudo">
+  <div class="hero">
+    <div class="hero-copy">
+      <h1><span class="l"><span>O verão</span></span><span class="l"><span>é <em>seu.</em></span></span></h1>
+      <p class="hero-lead">Seu corpo, seu ritmo, seu lugar ao sol. Encontre a peça que combina com você.</p>
+      <a class="btn" href="#colecao">Explore a coleção <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <span class="hero-foot label">Vestindo mulheres reais desde 2020</span>
+    </div>
+    <div class="hero-visual">
+      <figure class="hero-figure">
+        <div class="hero-photo"><img src="assets/hero.jpg" width="562" height="750" fetchpriority="high" alt="Modelo de biquíni claro com argola dourada, ao pôr do sol à beira da água"></div>
+        <figcaption><span class="label">Dias leves, memórias douradas</span><strong>Feita para viver o sol.</strong></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="benefits label">
+    <span><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Sua melhor marquinha</span>
+    <span><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Cores para cada versão de você</span>
+    <span><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>De Peixinhos para o seu verão</span>
+  </div>
+
+  <section id="colecao" aria-labelledby="colecao-titulo">
+    <div class="section-head">
+      <div>
+        <h2 id="colecao-titulo">Dias de sol pedem Nafita.</h2>
+        <p>Escolha o seu próximo favorito.</p>
+      </div>
+      <a class="text-link" href="#essencia">Conheça nossa essência <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrar coleção">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">Todos os modelos</button>
+      <button class="filter" type="button" data-filter="fita" aria-pressed="false">Biquínis de fita</button>
+      <button class="filter" type="button" data-filter="conjunto" aria-pressed="false">Conjuntos</button>
+    </div>
+    <div class="products" id="products"></div>
+  </section>
+
+  <section class="story" id="essencia" aria-labelledby="essencia-titulo">
+    <img loading="lazy" width="564" height="750" src="assets/sunset.jpg" alt="Mulher de chapéu de palha e óculos, de costas, olhando o pôr do sol na praia">
+    <div class="story-copy">
+      <h2 id="essencia-titulo">Vista o que faz você <em>se sentir bem.</em></h2>
+      <p>Desde 2020, vestindo mulheres reais. Na Nafita, cada dia de sol é um convite para aproveitar o verão do seu jeito.</p>
+      <a class="text-link" href="#colecao">Encontre a sua Nafita <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+
+  <div class="signature">
+    <img loading="lazy" width="276" height="280" src="assets/logo.jpg" alt="Logo da Nafita Moda Praia">
+    <p>A melhor marquinha é aqui.</p>
+    <small class="label">Nafita · Moda praia</small>
+  </div>
+</main>
+
+<footer id="contato">
+  <div class="brand">NAFITA<small>MODA PRAIA</small></div>
+  <p>Rua Vinte de Janeiro, 501 · Peixinhos<br>Desde 2020 vestindo mulheres reais.</p>
+  <div class="footer-links">
+    <a class="text-link" href="https://wa.me/message/NKS3IVOFUN5RJ1" target="_blank" rel="noopener">Falar no WhatsApp <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a class="text-link" href="https://www.instagram.com/nafitamodapraia/" target="_blank" rel="noopener">Nos acompanhe no Instagram <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </div>
+</footer>
+<div class="preview-note">Prévia de conceito · Fotos do perfil Nafita · Nomes ilustrativos · Preços, estoque e compra ainda não disponíveis.</div>
+
+<dialog id="productDialog" class="dialog" aria-labelledby="modalTitle">
+  <button class="close" type="button" data-close aria-label="Fechar"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+  <div class="modal-layout">
+    <img id="modalImg" width="562" height="750" src="assets/pink.jpg" alt="">
+    <div class="modal-copy">
+      <h2 id="modalTitle"></h2>
+      <p>Uma dose de verão para acompanhar os seus dias de sol.</p>
+      <p id="colorText"></p>
+      <fieldset class="sizes" id="sizes"><legend>Escolha o tamanho</legend>
+        <button type="button" aria-pressed="false">P</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">G</button><button type="button" aria-pressed="false">GG</button>
+      </fieldset>
+      <p class="fine">Tamanhos demonstrativos. Disponibilidade e medidas serão confirmadas na loja final.</p>
+      <button class="btn" type="button" id="addButton" data-icon="plus">Adicionar à prévia <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="bagDialog" class="dialog" aria-labelledby="bagTitle">
+  <button class="close" type="button" data-close aria-label="Fechar"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+  <span class="label">Suas escolhas</span>
+  <h2 id="bagTitle" style="margin-top:10px">Sacola de verão</h2>
+  <div id="bagItems"></div>
+  <p class="bag-note">Esta sacola demonstra a experiência da loja.<br>Nenhum pedido ou pagamento será realizado.</p>
+  <button class="btn" type="button" data-close>Continuar explorando <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+</dialog>
+
+<script>
+const products = [
+  { name: 'Conjunto Areia', img: 'ivory',  category: 'conjunto', colors: ['#efe9dc', '#542631'], color: 'Areia / vinho',          tag: 'TONS NATURAIS', alt: 'Conjunto Areia: biquíni claro com argola dourada e detalhes em vinho' },
+  { name: 'Biquíni Pink Solar', img: 'pink',   category: 'fita',     colors: ['#c60074', '#f2f0e6'], color: 'Pink / branco',          tag: 'COR DE VERÃO',  alt: 'Biquíni Pink Solar: peça pink com vivo branco' },
+  { name: 'Biquíni Maré',   img: 'blue',   category: 'fita',     colors: ['#132440', '#f4efe4'], color: 'Azul-marinho / branco', tag: '',              alt: 'Biquíni Maré: peça azul-marinho com vivo branco' },
+  { name: 'Biquíni Brisa',  img: 'pastel', category: 'fita',     colors: ['#9acbd3', '#d8a6ae'], color: 'Azul-claro / rosa',     tag: '',              alt: 'Biquíni Brisa: peça rosa com vivo azul-claro' }
+];
+
+const $ = (id) => document.getElementById(id);
+const grid = $('products'), productDialog = $('productDialog'), bagDialog = $('bagDialog');
+const sizesBox = $('sizes'), statusEl = $('status'), countEl = $('count'), bagButton = $('bagButton');
+let selected = 0, size = '';
+const bag = [];
+
+const icon = (id) => `<svg class="icon" aria-hidden="true"><use href="#${id}"/></svg>`;
+
+grid.innerHTML = products.map((p, i) => `
+  <article class="product" data-category="${p.category}">
+    <button class="product-photo" type="button" data-open="${i}" tabindex="-1" aria-hidden="true">
+      <img loading="lazy" width="558" height="746" src="assets/${p.img}.jpg" alt="">
+      ${p.tag ? `<span class="tag">${p.tag}</span>` : ''}
+      <span class="plus">${icon('i-plus')}</span>
+    </button>
+    <h3><button type="button" data-open="${i}">${p.name}</button></h3>
+    <div class="product-info">
+      <span>Conheça a peça</span>
+      <span class="swatches" role="img" aria-label="Cores: ${p.color.replace(' / ', ' e ')}">${p.colors.map((c) => `<i style="--c:${c}"></i>`).join('')}</span>
+    </div>
+  </article>`).join('');
+
+const filterButtons = document.querySelectorAll('.filter');
+filterButtons.forEach((b) => {
+  const f = b.dataset.filter;
+  const n = f === 'all' ? products.length : products.filter((p) => p.category === f).length;
+  b.insertAdjacentHTML('beforeend', `<span aria-hidden="true">${n}</span>`);
+  b.setAttribute('aria-label', `${b.firstChild.textContent}, ${n} ${n === 1 ? 'modelo' : 'modelos'}`);
+  b.addEventListener('click', () => {
+    filterButtons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    document.querySelectorAll('.product').forEach((el) => { el.hidden = f !== 'all' && el.dataset.category !== f; });
+  });
+});
+
+function openProduct(i) {
+  selected = i; size = '';
+  const p = products[i];
+  const img = $('modalImg');
+  img.src = `assets/${p.img}.jpg`; img.alt = p.alt;
+  $('modalTitle').textContent = p.name;
+  $('colorText').textContent = `Cores da peça: ${p.color}`;
+  statusEl.textContent = '';
+  sizesBox.classList.remove('needs');
+  sizesBox.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', 'false'));
+  productDialog.showModal();
+}
+
+sizesBox.addEventListener('click', (e) => {
+  const b = e.target.closest('button'); if (!b) return;
+  size = b.textContent;
+  sizesBox.classList.remove('needs');
+  sizesBox.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+  statusEl.textContent = '';
+});
+
+function updateCount() {
+  countEl.textContent = `(${bag.length})`;
+  bagButton.classList.remove('bump'); void bagButton.offsetWidth; bagButton.classList.add('bump');
+}
+
+$('addButton').addEventListener('click', () => {
+  if (!size) {
+    sizesBox.classList.add('needs');
+    statusEl.textContent = 'Escolha um tamanho para experimentar a sacola.';
+    sizesBox.querySelector('button').focus();
+    return;
+  }
+  bag.push({ i: selected, size });
+  updateCount();
+  statusEl.textContent = 'Adicionado à sacola de demonstração.';
+});
+
+function renderBag() {
+  $('bagItems').innerHTML = bag.length
+    ? bag.map((b, i) => {
+        const p = products[b.i];
+        return `<div class="bag-row"><img src="assets/${p.img}.jpg" alt="" width="56" height="74"><div><b>${p.name}</b><span>Tamanho ${b.size} · ${p.color}</span></div><button class="remove" type="button" data-remove="${i}" aria-label="Remover ${p.name} tamanho ${b.size}">Remover</button></div>`;
+      }).join('')
+    : '<p class="empty">Sua sacola está esperando os seus favoritos.</p>';
+}
+
+function showBag() { renderBag(); if (!bagDialog.open) bagDialog.showModal(); }
+bagButton.addEventListener('click', showBag);
+
+document.addEventListener('click', (e) => {
+  const open = e.target.closest('[data-open]');
+  if (open) { openProduct(Number(open.dataset.open)); return; }
+  const rem = e.target.closest('[data-remove]');
+  if (rem) { bag.splice(Number(rem.dataset.remove), 1); updateCount(); renderBag(); return; }
+  if (e.target.closest('[data-close]')) { e.target.closest('dialog').close(); return; }
+  if (e.target instanceof HTMLDialogElement) { // clique no fundo escurecido
+    const r = e.target.getBoundingClientRect();
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) e.target.close();
+  }
+});
+</script>
+</body>
+</html>
